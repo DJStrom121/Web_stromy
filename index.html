@@ -3,36 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profesionální Služby | Tvoje Jméno</title>
+    <title>Péče o stromy Jozek | Profesionální arboristika</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
+        /* --- BRANDING A BARVY (PŘESNĚ DLE SITE123 SCREENSHOTŮ) --- */
+        :root {
+            --site123-black: #000000;    /* Tmavé pozadí a texty */
+            --site123-white: #ffffff;    /* Čisté bílé sekce */
+            --site123-grey: #f7f9fc;     /* Světle šedé sekce */
+            --site123-green: #4f8730;    /* Přesný odstín zelené na akcenty a tlačítka */
+            --text-color: #333333;       /* Čitelný tmavý text */
+        }
+
         /* --- GLOBÁLNÍ STYLY --- */
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            color: #2d3748;
-            background-color: #f7fafc;
+            color: var(--text-color);
+            background-color: var(--site123-white);
             line-height: 1.6;
         }
 
-        h1, h2, h3 {
-            color: #1a365d;
+        /* Hladké rolování při kliknutí na menu */
+        html {
+            scroll-behavior: smooth;
         }
 
         .container {
             width: 85%;
-            max-width: 1200px;
+            max-width: 1140px;
             margin: 0 auto;
-            padding: 60px 0;
+            padding: 80px 0; /* Velké vzdušné mezery ze SITE123 */
         }
 
-        /* --- NAVIGACE (HLAVIČKA) --- */
+        /* Tlačítka (Zelené z webu) */
+        .btn-green {
+            background-color: var(--site123-green);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.2s, transform 0.2s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-green:hover {
+            background-color: #3f6c26;
+            transform: translateY(-1px);
+        }
+
+        /* Šipky u ohlasů */
+        .arrow {
+            color: rgba(0,0,0,0.5);
+            font-size: 40px;
+            text-decoration: none;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        /* Zelená linka pod nadpisy */
+        .green-underline {
+            width: 70px;
+            height: 3px;
+            background-color: var(--site123-green);
+            margin: 15px auto 25px auto;
+            display: block;
+        }
+
+        /* --- 1. HLAVIČKA A MENU --- */
         header {
-            background-color: #ffffff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
+            background-color: var(--site123-black);
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         .header-container {
             width: 85%;
@@ -44,181 +98,349 @@
             padding: 20px 0;
         }
         .logo {
-            font-size: 22px;
-            font-weight: 700;
-            color: #1a365d;
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--site123-white);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         nav a {
-            margin-left: 25px;
+            margin-left: 30px;
             text-decoration: none;
-            color: #4a5568;
+            color: var(--site123-white);
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: color 0.2s;
         }
-        nav a:hover {
-            color: #3182ce;
+        nav a:hover, nav a.active {
+            color: var(--site123-green);
         }
 
-        /* --- HLAVNÍ BANNER (HERO) --- */
+        /* --- 2. HERO SEKCE --- */
         .hero {
-            background: linear-gradient(135deg, #1a365d 0%, #2a4365 100%);
+            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
+                        url('uvod.jpg.jpg') no-repeat center center/cover;
             color: white;
             text-align: center;
-            padding: 100px 20px;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-end; 
+            align-items: center;
+            margin-top: 80px;
+            padding-right: 8%; 
+            box-sizing: border-box;
+        }
+        .hero-box {
+            background-color: rgba(255, 255, 255, 0.96); 
+            color: var(--site123-black);
+            padding: 55px;
+            max-width: 480px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.25);
+            text-align: left;
+            border-radius: 4px;
         }
         .hero h1 {
-            color: white;
             font-size: 42px;
-            margin-bottom: 20px;
+            margin: 0 0 10px 0;
+            font-weight: 900;
         }
         .hero p {
             font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto 30px auto;
-            opacity: 0.9;
-        }
-        .btn {
-            background-color: #e53e3e;
-            color: white;
-            padding: 14px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: background 0.3s;
-            display: inline-block;
-        }
-        .btn:hover {
-            background-color: #c53030;
+            color: var(--text-color);
+            margin: 0;
         }
 
-        /* --- SEKCE: O MNĚ / BENEFITY --- */
-        .features {
-            background-color: #ffffff;
-            text-align: center;
-        }
-        .features h2 {
-            font-size: 32px;
-            margin-bottom: 40px;
-        }
-        .grid-3 {
+        /* --- 3. O MNĚ --- */
+        #o-mne {
             display: flex;
-            justify-content: space-between;
+            align-items: flex-start;
+            gap: 50px;
+            padding-top: 100px;
+        }
+        .o-mne-img {
+            flex: 1;
+            min-width: 300px;
+            background: url('uvod.jpg.jpg') no-repeat center center/cover;
+            height: 400px;
+            border-radius: 4px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        .o-mne-text {
+            flex: 1;
+        }
+        .o-mne-text h2 {
+            font-size: 38px;
+            margin: 0;
+            font-weight: 900;
+        }
+        .o-mne-text .green-underline {
+            margin: 15px 0 25px 0; 
+        }
+        .o-mne-text p {
+            font-size: 16px;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        /* --- 4. SLUŽBY --- */
+        .services-section {
+            background-color: var(--site123-grey);
+        }
+        .services-section h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        .services-grid {
+            display: flex;
             gap: 30px;
             flex-wrap: wrap;
         }
-        .feature-item {
-            flex: 1;
-            min-width: 250px;
-            padding: 20px;
-        }
-        .feature-item h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        /* --- SEKCE: SLUŽBY --- */
-        .services {
-            background-color: #edf2f7;
-        }
-        .services h2 {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 40px;
-        }
-        .card {
-            background: white;
-            padding: 35px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        .service-card {
+            background: #ffffff;
+            border-radius: 4px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.02);
             flex: 1;
             min-width: 280px;
-            border-top: 5px solid #3182ce;
-            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
-        .card:hover {
-            transform: translateY(-5px);
+        .service-img {
+            height: 220px;
+            width: 100%;
         }
-        .price {
-            font-size: 24px;
+        .service-content {
+            padding: 30px;
+            text-align: left;
+        }
+        .service-content h3 {
+            font-size: 20px;
+            margin: 0 0 15px 0;
             font-weight: 700;
-            color: #2b6cb0;
-            margin: 15px 0;
+        }
+        .service-content p {
+            font-size: 15px;
+            color: var(--text-color);
+            margin: 0;
         }
 
-        /* --- SEKCE: KONTAKTNÍ FORMULÁŘ --- */
-        .contact {
-            background-color: #ffffff;
-        }
-        .contact h2 {
+        /* --- 5. OHLASY --- */
+        .ohlasy-section {
+            background-color: var(--site123-grey);
             text-align: center;
-            font-size: 32px;
-            margin-bottom: 20px;
+            position: relative;
         }
-        .contact p {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 40px auto;
+        .ohlasy-section h2 {
+            font-size: 36px;
+            margin-bottom: 60px;
+            font-weight: 900;
+            text-transform: uppercase;
         }
-        form {
-            max-width: 600px;
+        .ohlasy-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            max-width: 900px;
             margin: 0 auto;
-            background: #f7fafc;
+            background: #ffffff;
             padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            text-align: left;
         }
-        .form-group {
+        .ohlasy-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 4px;
+            background: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=300&q=80') no-repeat center center/cover;
+        }
+        .ohlasy-text {
+            flex: 1;
+        }
+        .ohlasy-text .client-type {
+            font-size: 12px;
+            color: #6c757d;
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+        .ohlasy-text h3 {
+            font-size: 20px;
+            margin: 5px 0 15px 0;
+            font-weight: 700;
+        }
+        .ohlasy-text .green-underline {
+            margin: 0 0 20px 0;
+        }
+        .ohlasy-text p {
+            font-size: 15px;
+            color: var(--text-color);
             margin-bottom: 20px;
         }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
+        .rating {
+            color: #ffc107;
+            font-size: 18px;
+        }
+
+        /* --- 6. KONTAKT --- */
+        .contact-section h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        .contact-container {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+        }
+        .contact-info {
+            flex: 1;
+            font-size: 15px;
+            color: var(--text-color);
+        }
+        .contact-info p {
+            margin: 0 0 25px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .contact-icon {
+            color: var(--site123-green);
+            font-size: 20px;
+        }
+        .contact-info a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .contact-info a:hover {
+            color: var(--site123-green);
+        }
+
+        form {
+            flex: 1.5;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-full {
+            grid-column: span 2;
         }
         input[type="text"], input[type="email"], textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e0;
+            padding: 15px;
+            border: 1px solid #dee2e6;
             border-radius: 4px;
             box-sizing: border-box;
             font-family: inherit;
+            font-size: 15px;
+            transition: border-color 0.2s;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--site123-green);
         }
         textarea {
             height: 120px;
             resize: vertical;
         }
-        form button {
-            background-color: #1a365d;
-            color: white;
-            border: none;
-            padding: 14px 20px;
+
+        /* --- 7. MAPA --- */
+        .map-section {
             width: 100%;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1582236357912-32b5f6b216fb?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            position: relative;
+        }
+        .map-box {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.95);
+            padding: 20px;
             border-radius: 4px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        form button:hover {
-            background-color: #2a4365;
-        }
-
-        /* --- PATIČKA --- */
-        footer {
-            background-color: #1a202c;
-            color: #a0aec0;
-            text-align: center;
-            padding: 30px 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             font-size: 14px;
+            max-width: 250px;
+        }
+        .map-box h4 {
+            margin: 0 0 5px 0;
+            font-size: 15px;
+        }
+        .map-box p {
+            margin: 0;
+            color: #6c757d;
+        }
+        .map-links {
+            margin-top: 10px;
+            display: flex;
+            gap: 15px;
+        }
+        .map-links a {
+            color: #007bff;
+            text-decoration: none;
         }
 
-        /* RESPONSIVITA (PRO MOBILY) */
+        /* --- 8. PATIČKA --- */
+        footer {
+            background-color: var(--site123-black);
+            color: #ffffff;
+            text-align: center;
+            padding: 50px 20px;
+            font-size: 13px;
+        }
+        .footer-logo {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .footer-nav {
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            text-transform: uppercase;
+        }
+        .footer-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .footer-nav a:hover {
+            opacity: 1;
+            color: var(--site123-green);
+        }
+        footer p {
+            margin: 5px 0;
+            opacity: 0.7;
+        }
+
+        /* RESPONSIVITA (MOBILY) */
         @media (max-width: 768px) {
-            .header-container { flex-direction: column; gap: 15px; text-align: center; }
-            nav a { margin: 0 10px; }
-            .grid-3 { flex-direction: column; }
-            .hero h1 { font-size: 30px; }
+            .header-container { flex-direction: column; gap: 15px; padding: 10px 0; }
+            nav a { margin: 0 8px; font-size: 13px; }
+            .hero { justify-content: center; padding-right: 0; }
+            .hero-box { padding: 35px; max-width: 90%; text-align: center; }
+            .hero-box .green-underline { margin: 15px auto 25px auto; }
+            #o-mne { flex-direction: column; text-align: center; gap: 30px; }
+            .o-mne-text .green-underline { margin: 15px auto 25px auto; }
+            .services-grid { flex-direction: column; gap: 20px; }
+            .ohlasy-container { flex-direction: column; text-align: center; gap: 20px; padding: 30px; }
+            .ohlasy-img { margin: 0 auto; }
+            .ohlasy-text .green-underline { margin: 0 auto 20px auto; }
+            .contact-container { flex-direction: column; gap: 40px; }
+            form { grid-template-columns: 1fr; gap: 15px; }
+            .form-full { grid-column: span 1; }
+            .footer-nav { flex-wrap: wrap; gap: 10px 20px; }
         }
     </style>
 </head>
@@ -226,92 +448,149 @@
 
     <header>
         <div class="header-container">
-            <a href="#" class="logo">Jan Novák</a> <nav>
-                <a href="#o-mne">Proč já?</a>
+            <a href="#" class="logo">
+                <img src="Logo_1.png" alt="Logo" style="height: 35px; width: auto; vertical-align: middle; margin-right: 2px;"> 
+                Péče o stromy Jozek
+            </a>
+            <nav>
+                <a href="#domov" class="active">Úvod</a>
+                <a href="#o-mne">O mně</a>
                 <a href="#sluzby">Služby</a>
+                <a href="#ohlasy">Ohlasy</a>
                 <a href="#kontakt">Kontakt</a>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <h1>Pomohu vám s [Doplň svůj obor]</h1>
-        <p>Poskytuji spolehlivé, rychlé a profesionální služby šité na míru vašim potřebám. Dejte svému podnikání nový impuls.</p>
-        <a href="#kontakt" class="btn">Nezávazná poptávka</a>
-    </section>
-
-    <section id="o-mne" class="container features">
-        <h2>Proč spolupracovat právě se mnou?</h2>
-        <div class="grid-3">
-            <div class="feature-item">
-                <h3>⚡ Rychlost a flexibilita</h3>
-                <p>Na zprávy odpovídám bleskově a termíny pro mě nejsou jen orientační, ale svaté.</p>
-            </div>
-            <div class="feature-item">
-                <h3>🎯 Špičková kvalita</h3>
-                <p>Každému projektu věnuji maximální péči. Vaše spokojenost je pro mě na prvním místě.</p>
-            </div>
-            <div class="feature-item">
-                <h3>💼 Profesionální přístup</h3>
-                <p>Mám [X] let praxe v oboru a zakládám si na férovém a transparentním jednání.</p>
-            </div>
+    <section id="domov" class="hero">
+        <div class="hero-box">
+            <h1>Péče o stromy Jozek</h1>
+            <span class="green-underline" style="margin: 15px 0 25px 0;"></span>
+            <p>Arboristika, rizikové kácení stromů, komplexní péče o ovocné stromy, inventarizace dřevin</p>
         </div>
     </section>
 
-    <section id="sluzby" class="services">
+    <section id="o-mne" class="container">
+        <div class="o-mne-img"></div>
+        <div class="o-mne-text">
+            <h2>O mně</h2>
+            <span class="green-underline"></span>
+            <p>Jmenuji se Dominik Jozek a specializuji se na péči o všechny typy stromů. Na Univerzitě Palackého v Olomouci jsem získal vzdělání v oboru ekologie a ochrany životního prostředí a v praxi se zaměřuji na arboristické řezy, rizikové kácení, instalaci bezpečnostních vazeb, výsadby a ořezy ovocných stromů aj.</p>
+            <p>Pomohu vám zlepšit zdravotní stav stromů, zvýšit bezpečnost na pozemku a navrhnout vhodná opatření. Pracuji moderními postupy, s důrazem na šetrnost k okolí, čisté provedení a společnou komunikaci. Působím u rodinných domů i ve firmách.</p>
+        </div>
+    </section>
+
+    <section id="sluzby" class="services-section">
         <div class="container">
-            <h2>Nabídka služeb</h2>
-            <div class="grid-3">
-                <div class="card">
-                    <h3>Základní konzultace</h3>
-                    <p>Analýza vaší situace, zhodnocení současného stavu a návrh optimálního řešení vašeho problému.</p>
-                    <div class="price">od 1 200 Kč</div>
+            <h2>Služby</h2>
+            <div class="services-grid">
+                
+                <div class="service-card">
+                    <div class="service-img" style="background: url('https://images.unsplash.com/photo-1596700344445-6fdf4be1edc7?auto=format&fit=crop&w=400&q=80') no-repeat center center/cover;"></div>
+                    <div class="service-content">
+                        <h3>Arboristické řezy</h3>
+                        <p>Zdravotní, bezpečnostní a redukční řezy pro stabilitu dlouhověkost stromů v souladu s moderními standardy.</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Kompletní servis</h3>
-                    <p>Komplexní realizace zakázky na klíč od úvodního návrhu až po finální předání a následnou podporu.</p>
-                    <div class="price">od 5 000 Kč</div>
+
+                <div class="service-card">
+                    <div class="service-img" style="background: url('kaceni.jpg') no-repeat center center/cover;"></div>
+                    <div class="service-content">
+                        <h3>Rizikové kácení stromů</h3>
+                        <p>Bezpečné kácení v těsných podmínkách u budov a vedení, včetně postupného kácení pomocí lanové techniky.</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Dlouhodobá správa</h3>
-                    <p>Pravidelný měsíční dohled, optimalizace, konzultace a bleskové řešení jakýchkoliv nečekaných situací.</p>
-                    <div class="price">2 500 Kč / měsíc</div>
+
+                <div class="service-card">
+                    <div class="service-img" style="background: url('ovocne.jpeg') no-repeat center center/cover; background-color: #ddd;"></div>
+                    <div class="service-content">
+                        <h3>Péče o ovocné stromy</h3>
+                        <p>Kompletní servis pro váš sad či zahradu: odborná výsadba, správné zakládání koruny, výchovné řezy mladých stromů a udržovací zdravotní řezy pro bohatou úrodu.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-img" style="background: url('https://images.unsplash.com/photo-1511216113906-8f57bb83e776?auto=format&fit=crop&w=400&q=80') no-repeat center center/cover;"></div>
+                    <div class="service-content">
+                        <h3>Inventarizace dřevin</h3>
+                        <p>Odborné a komplexní zmapování všech stromů a keřů v daném území. Slouží například jako podklad pro úřady ochrany přírody k vydání povolení o kácení.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="ohlasy" class="ohlasy-section">
+        <a href="#" class="arrow" style="left: 20px;">‹</a>
+        <a href="#" class="arrow" style="right: 20px;">›</a>
+        
+        <div class="container">
+            <h2>Ohlasy</h2>
+            <div class="ohlasy-container">
+                <div class="ohlasy-img"></div>
+                <div class="ohlasy-text">
+                    <p class="client-type">Zahrádkářka</p>
+                    <h3>Jana Konečná</h3>
+                    <span class="green-underline"></span>
+                    <p>Objednali jsme arboristický řez ovocných stromů. Stromy are krásně prosvětlené a je vidět odborný přístup. Určitě se ozveme i příště.</p>
+                    <div class="rating">★★★★★</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="kontakt" class="container contact">
-        <h2>Napište mi</h2>
-        <p>Máte zájem o spolupráci nebo jen nezávazný dotaz? Vyplňte formulář níže a já se vám ozvu nejpozději do 24 hodin.</p>
-        
-        <form action="https://formsubmit.co/jozek.dominik@seznam.cz" method="POST">
-            
-            <input type="text" name="_honey" style="display:none">
-            <input type="hidden" name="_next" value="https://formsubmit.co/thanks">
+    <section id="kontakt" class="contact-section">
+        <div class="container">
+            <h2>Kontakt</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <p><span class="contact-icon">📍</span> Mořkov, Nádražní, 413</p>
+                    <p><span class="contact-icon">📞</span> <a href="tel:+420731961726">+ 420 731 961 726</a></p>
+                    <p><span class="contact-icon">✉️</span> <a href="mailto:peceostromyjozek@seznam.cz">peceostromyjozek@seznam.cz</a></p>
+                    <p><span class="contact-icon">🕒</span> Po-Pá - 09:00-19:00</p>
+                </div>
 
-            <div class="form-group">
-                <label for="name">Vaše jméno / Firma</label>
-                <input type="text" id="name" name="Jméno" required placeholder="Např. Jan Novák">
+                <form action="https://formsubmit.co/jozek.dominik@seznam.cz" method="POST">
+                    <input type="text" name="_honey" style="display:none">
+                    <input type="hidden" name="_next" value="https://formsubmit.co/thanks">
+
+                    <input type="text" name="Jméno" required placeholder="Jméno">
+                    <input type="text" name="Telefon" required placeholder="Telefon">
+                    <div class="form-full">
+                        <input type="email" name="Email" required placeholder="E-mailová adresa">
+                    </div>
+                    <div class="form-full">
+                        <textarea name="Zpráva" required placeholder="Zpráva"></textarea>
+                    </div>
+
+                    <div class="form-full" style="text-align: center;">
+                        <button type="submit" class="btn-green">Kontaktujte nás</button>
+                    </div>
+                </form>
             </div>
+        </div>
+    </section>
 
-            <div class="form-group">
-                <label for="email">E-mailová adresa</label>
-                <input type="email" id="email" name="Email" required placeholder="jmeno@domena.cz">
-            </div>
-
-            <div class="form-group">
-                <label for="message">S čím vám mohu pomoci?</label>
-                <textarea id="message" name="Zpráva" required placeholder="Popište stručně váš projekt nebo dotaz..."></textarea>
-            </div>
-
-            <button type="submit">Odeslat poptávku</button>
-        </form>
+    <section class="map-section" style="width: 100%; height: 450px; line-height: 0; margin: 0; padding: 0;">
+        <iframe style="border:none" 
+        src="https://mapy.com/s/bacanemavu" 
+        width="1250" 
+        height="333" 
+        frameborder="0"></iframe>
     </section>
 
     <footer>
-        <p>&copy; 2026 Tvoje Jméno. Všechna práva vyhrazena. IČO: 12345678</p>
-    </footer>
+        <span class="footer-logo">Péče o stromy Jozek</span>
+        <div class="footer-nav">
+            <a href="#domov">Domov</a>
+            <a href="#o-mne">O nás</a>
+            <a href="#sluzby">Služby</a>
+            <a href="#ohlasy">Ohlasy</a>
+            <a href="#kontakt">Kontakt</a>
+        </div>
+        <p>&copy; 2026 Dominik Jozek. Všechna práva vyhrazena.</p>
+        </footer>
 
 </body>
 </html>

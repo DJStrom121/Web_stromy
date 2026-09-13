@@ -6,7 +6,7 @@
     <title>Péče o stromy Jozek | Profesionální arboristika</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        /* --- BRANDING A BARVY (PŘESNĚ DLE SITE123 SCREENSHOTŮ) --- */
+        /* --- BRANDING A BARVY --- */
         :root {
             --site123-black: #000000;    /* Tmavé pozadí a texty */
             --site123-white: #ffffff;    /* Čisté bílé sekce */
@@ -23,9 +23,9 @@
             color: var(--text-color);
             background-color: var(--site123-white);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Hladké rolování při kliknutí na menu */
         html {
             scroll-behavior: smooth;
         }
@@ -34,10 +34,10 @@
             width: 85%;
             max-width: 1140px;
             margin: 0 auto;
-            padding: 80px 0; /* Velké vzdušné mezery ze SITE123 */
+            padding: 80px 0;
         }
 
-        /* Tlačítka (Zelené z webu) */
+        /* Tlačítka */
         .btn-green {
             background-color: var(--site123-green);
             color: white;
@@ -48,25 +48,16 @@
             font-size: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: background 0.2s, transform 0.2s;
+            transition: all 0.3s ease;
             display: inline-block;
             border: none;
             cursor: pointer;
+            box-shadow: 0 4px 10px rgba(79, 135, 48, 0.2);
         }
         .btn-green:hover {
             background-color: #3f6c26;
-            transform: translateY(-1px);
-        }
-
-        /* Šipky u ohlasů */
-        .arrow {
-            color: rgba(0,0,0,0.5);
-            font-size: 40px;
-            text-decoration: none;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(79, 135, 48, 0.35);
         }
 
         /* Zelená linka pod nadpisy */
@@ -76,6 +67,24 @@
             background-color: var(--site123-green);
             margin: 15px auto 25px auto;
             display: block;
+        }
+
+        /* --- PŘIDANÉ ANIMACE NA SCROLL --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-timeline: view();
+            animation-range: entry 10% cover 30%;
         }
 
         /* --- 1. HLAVIČKA A MENU --- */
@@ -105,6 +114,10 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover {
+            transform: scale(1.02);
         }
         nav a {
             margin-left: 30px;
@@ -113,7 +126,8 @@
             font-weight: 500;
             font-size: 14px;
             text-transform: uppercase;
-            transition: color 0.2s;
+            transition: color 0.3s ease;
+            position: relative;
         }
         nav a:hover, nav a.active {
             color: var(--site123-green);
@@ -130,6 +144,7 @@
             justify-content: flex-end; 
             align-items: center;
             margin-top: 80px;
+            margin-bottom: 0;
             padding-right: 8%; 
             box-sizing: border-box;
         }
@@ -141,6 +156,7 @@
             box-shadow: 0 15px 45px rgba(0,0,0,0.25);
             text-align: left;
             border-radius: 4px;
+            animation: fadeInUp 1s ease-out;
         }
         .hero h1 {
             font-size: 42px;
@@ -155,34 +171,69 @@
 
         /* --- 3. O MNĚ --- */
         #o-mne {
+            background-color: #f4f6f3;
+            padding: 90px 0;
+            margin-top: 0px;
+        }
+
+        .o-mne-wrapper {
             display: flex;
-            align-items: flex-start;
-            gap: 50px;
-            padding-top: 100px;
+            align-items: center;
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
         }
-        .o-mne-img {
+
+        .o-mne-img-box {
+            flex: 0 0 42%;
+            z-index: 2;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+        }
+
+        .o-mne-img-box img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .o-mne-slide-card {
             flex: 1;
-            min-width: 300px;
-            background: url('uvod.jpg.jpg') no-repeat center center/cover;
-            height: 400px;
-            border-radius: 4px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            background-color: var(--site123-green);
+            color: #ffffff;
+            padding: 45px 50px;
+            border-radius: 16px;
+            margin-left: -35px;
+            z-index: 1;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
         }
-        .o-mne-text {
-            flex: 1;
-        }
-        .o-mne-text h2 {
-            font-size: 38px;
+
+        .o-mne-slide-card h2 {
+            font-size: 36px;
             margin: 0;
             font-weight: 900;
+            color: #ffffff;
         }
-        .o-mne-text .green-underline {
-            margin: 15px 0 25px 0; 
+
+        .o-mne-slide-card .white-underline {
+            width: 70px;
+            height: 3px;
+            background-color: #ffffff;
+            margin: 15px 0 25px 0;
+            display: block;
         }
-        .o-mne-text p {
-            font-size: 16px;
-            color: var(--text-color);
-            margin-bottom: 20px;
+
+        .o-mne-slide-card p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.7;
+            margin-bottom: 15px;
         }
 
         /* --- 4. SLUŽBY --- */
@@ -203,21 +254,32 @@
         }
         .service-card {
             background: #ffffff;
-            border-radius: 4px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.02);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             flex: 1;
-            min-width: 280px;
+            min-width: 260px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
         }
         .service-img {
             height: 220px;
             width: 100%;
+            transition: transform 0.5s ease;
+        }
+        .service-card:hover .service-img {
+            transform: scale(1.05);
         }
         .service-content {
             padding: 30px;
             text-align: left;
+            background-color: white;
+            z-index: 1;
         }
         .service-content h3 {
             font-size: 20px;
@@ -230,65 +292,117 @@
             margin: 0;
         }
 
-        /* --- 5. OHLASY --- */
-        .ohlasy-section {
-            background-color: var(--site123-grey);
+        /* --- 5. GALERIE (PŘED A PO S POSUVNÍKEM) --- */
+        .gallery-section {
+            background-color: var(--site123-white);
             text-align: center;
-            position: relative;
         }
-        .ohlasy-section h2 {
+        .gallery-section h2 {
             font-size: 36px;
-            margin-bottom: 60px;
+            margin-bottom: 10px;
             font-weight: 900;
             text-transform: uppercase;
         }
-        .ohlasy-container {
-            display: flex;
-            align-items: flex-start;
-            gap: 40px;
-            max-width: 900px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            text-align: left;
-        }
-        .ohlasy-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 4px;
-            background: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=300&q=80') no-repeat center center/cover;
-        }
-        .ohlasy-text {
-            flex: 1;
-        }
-        .ohlasy-text .client-type {
-            font-size: 12px;
+        .gallery-subtitle {
             color: #6c757d;
-            text-transform: uppercase;
-            margin: 0;
-            letter-spacing: 0.5px;
+            font-size: 16px;
+            margin-bottom: 40px;
         }
-        .ohlasy-text h3 {
-            font-size: 20px;
-            margin: 5px 0 15px 0;
+        .before-after-box {
+            position: relative;
+            max-width: 850px;
+            height: 480px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            user-select: none;
+        }
+        .before-after-box img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .img-before-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 2;
+        }
+        .img-before-wrapper img {
+            width: 850px; /* Musí odpovídat max-width boxu, aby se nedeformovala */
+            max-width: none;
+        }
+        /* Štítky Před a Po */
+        .badge-label {
+            position: absolute;
+            bottom: 20px;
+            padding: 6px 14px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 12px;
             font-weight: 700;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            pointer-events: none;
         }
-        .ohlasy-text .green-underline {
-            margin: 0 0 20px 0;
+        .badge-before { left: 20px; z-index: 4; }
+        .badge-after { right: 20px; z-index: 1; }
+
+        /* Vlastní slider input */
+        .before-after-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 5;
+            cursor: ew-resize;
+            margin: 0;
         }
-        .ohlasy-text p {
-            font-size: 15px;
-            color: var(--text-color);
-            margin-bottom: 20px;
+        /* Dělící čára a kolečko */
+        .slider-divider {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            background: #ffffff;
+            z-index: 3;
+            transform: translateX(-50%);
+            pointer-events: none;
+            box-shadow: 0 0 8px rgba(0,0,0,0.4);
         }
-        .rating {
-            color: #ffc107;
-            font-size: 18px;
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 42px;
+            height: 42px;
+            background-color: var(--site123-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            font-size: 16px;
         }
 
         /* --- 6. KONTAKT --- */
+        .contact-section {
+            background-color: var(--site123-grey);
+        }
         .contact-section h2 {
             text-align: center;
             font-size: 36px;
@@ -319,6 +433,7 @@
         .contact-info a {
             color: inherit;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         .contact-info a:hover {
             color: var(--site123-green);
@@ -341,11 +456,12 @@
             box-sizing: border-box;
             font-family: inherit;
             font-size: 15px;
-            transition: border-color 0.2s;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
         input:focus, textarea:focus {
             outline: none;
             border-color: var(--site123-green);
+            box-shadow: 0 0 8px rgba(79, 135, 48, 0.2);
         }
         textarea {
             height: 120px;
@@ -356,36 +472,9 @@
         .map-section {
             width: 100%;
             height: 400px;
-            background: url('https://images.unsplash.com/photo-1582236357912-32b5f6b216fb?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
-            position: relative;
-        }
-        .map-box {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(255,255,255,0.95);
-            padding: 20px;
-            border-radius: 4px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            font-size: 14px;
-            max-width: 250px;
-        }
-        .map-box h4 {
-            margin: 0 0 5px 0;
-            font-size: 15px;
-        }
-        .map-box p {
             margin: 0;
-            color: #6c757d;
-        }
-        .map-links {
-            margin-top: 10px;
-            display: flex;
-            gap: 15px;
-        }
-        .map-links a {
-            color: #007bff;
-            text-decoration: none;
+            padding: 0;
+            overflow: hidden;
         }
 
         /* --- 8. PATIČKA --- */
@@ -413,7 +502,7 @@
             color: #ffffff;
             text-decoration: none;
             opacity: 0.8;
-            transition: opacity 0.2s;
+            transition: opacity 0.3s, color 0.3s;
         }
         .footer-nav a:hover {
             opacity: 1;
@@ -431,12 +520,19 @@
             .hero { justify-content: center; padding-right: 0; }
             .hero-box { padding: 35px; max-width: 90%; text-align: center; }
             .hero-box .green-underline { margin: 15px auto 25px auto; }
-            #o-mne { flex-direction: column; text-align: center; gap: 30px; }
-            .o-mne-text .green-underline { margin: 15px auto 25px auto; }
+            #o-mne { padding: 50px 20px; }
+            .o-mne-wrapper { flex-direction: column; }
+            .o-mne-img-box { width: 100%; border-radius: 12px 12px 0 0; }
+            .o-mne-slide-card {
+                width: 100%;
+                margin-left: 0;
+                margin-top: -15px;
+                border-radius: 0 0 12px 12px;
+                padding: 30px 20px;
+                box-sizing: border-box;
+            }
             .services-grid { flex-direction: column; gap: 20px; }
-            .ohlasy-container { flex-direction: column; text-align: center; gap: 20px; padding: 30px; }
-            .ohlasy-img { margin: 0 auto; }
-            .ohlasy-text .green-underline { margin: 0 auto 20px auto; }
+            .before-after-box { height: 320px; }
             .contact-container { flex-direction: column; gap: 40px; }
             form { grid-template-columns: 1fr; gap: 15px; }
             .form-full { grid-column: span 1; }
@@ -446,6 +542,7 @@
 </head>
 <body>
 
+    <!-- 1. HLAVIČKA A MENU -->
     <header>
         <div class="header-container">
             <a href="#" class="logo">
@@ -456,12 +553,13 @@
                 <a href="#domov" class="active">Úvod</a>
                 <a href="#o-mne">O mně</a>
                 <a href="#sluzby">Služby</a>
-                <a href="#ohlasy">Ohlasy</a>
+                <a href="#galerie">Galerie</a>
                 <a href="#kontakt">Kontakt</a>
             </nav>
         </div>
     </header>
 
+    <!-- 2. HERO SEKCE -->
     <section id="domov" class="hero">
         <div class="hero-box">
             <h1>Péče o stromy Jozek</h1>
@@ -470,31 +568,44 @@
         </div>
     </section>
 
-    <section id="o-mne" class="container">
-        <div class="o-mne-img"></div>
-        <div class="o-mne-text">
-            <h2>O mně</h2>
-            <span class="green-underline"></span>
-            <p>Jmenuji se Dominik Jozek a specializuji se na péči o všechny typy stromů. Na Univerzitě Palackého v Olomouci jsem získal vzdělání v oboru ekologie a ochrany životního prostředí a v praxi se zaměřuji na arboristické řezy, rizikové kácení, instalaci bezpečnostních vazeb, výsadby a ořezy ovocných stromů aj.</p>
-            <p>Pomohu vám zlepšit zdravotní stav stromů, zvýšit bezpečnost na pozemku a navrhnout vhodná opatření. Pracuji moderními postupy, s důrazem na šetrnost k okolí, čisté provedení a společnou komunikaci. Působím u rodinných domů i ve firmách.</p>
+    <!-- 3. O MNĚ -->
+    <section id="o-mne">
+        <div class="o-mne-wrapper">
+            
+            <div class="o-mne-img-box">
+                <img src="omne.png" alt="Dominik Jozek - Arborista">
+            </div>
+
+            <div class="o-mne-slide-card">
+                <h2>O mně</h2>
+                <span class="white-underline"></span>
+                <p>Práce se stromy je mé zaměstnání, koníček i zábava. Péčí o ně se snažím zajistit jejich dobrý zdravotní stav a zároveň bezpečí pro Vás i Váš majetek. Studiem Ekologie a ochrany životního prostředí na Univerzitě Palackého v Olomouci jsem získal teoretické znalosti o ochraně přírody, které se nyní snažím převádět do praxe. Provádím odborné arboristické zásahy, instalaci bezpečnostních vazeb, výsadby a ořezy ovocných stromů a když není jiná cesta, tak strom bezpečně a vhodně odstraním.</p>
+                <p>Rád Vám pomohu zlepšit zdravotní stav stromů, zajistit bezpečnost na pozemku a navrhnout vhodná opatření. Pracuji pomocí stromolezecké techniky, s důrazem na šetrnost k okolí, čisté provedení a společnou komunikaci.</p>
+            </div>
+
         </div>
     </section>
 
+    <!-- 4. SLUŽBY -->
     <section id="sluzby" class="services-section">
-        <div class="container">
+        <div class="container animate-on-scroll">
             <h2>Služby</h2>
             <div class="services-grid">
                 
                 <div class="service-card">
-                    <div class="service-img" style="background: url('https://images.unsplash.com/photo-1596700344445-6fdf4be1edc7?auto=format&fit=crop&w=400&q=80') no-repeat center center/cover;"></div>
+                    <div style="overflow: hidden;">
+                        <div class="service-img" style="background: url('orezy.png') no-repeat center center/cover;"></div>
+                    </div>
                     <div class="service-content">
                         <h3>Arboristické řezy</h3>
-                        <p>Zdravotní, bezpečnostní a redukční řezy pro stabilitu dlouhověkost stromů v souladu s moderními standardy.</p>
+                        <p>Zdravotní, bezpečnostní a redukční řezy pro stabilitu a dlouhověkost stromů v souladu s moderními standardy.</p>
                     </div>
                 </div>
 
                 <div class="service-card">
-                    <div class="service-img" style="background: url('kaceni.jpg') no-repeat center center/cover;"></div>
+                    <div style="overflow: hidden;">
+                        <div class="service-img" style="background: url('kaceni.png') no-repeat center center/cover;"></div>
+                    </div>
                     <div class="service-content">
                         <h3>Rizikové kácení stromů</h3>
                         <p>Bezpečné kácení v těsných podmínkách u budov a vedení, včetně postupného kácení pomocí lanové techniky.</p>
@@ -502,7 +613,9 @@
                 </div>
 
                 <div class="service-card">
-                    <div class="service-img" style="background: url('ovocne.jpeg') no-repeat center center/cover; background-color: #ddd;"></div>
+                    <div style="overflow: hidden;">
+                        <div class="service-img" style="background: url('ovocne.jpeg') no-repeat center center/cover; background-color: #ddd;"></div>
+                    </div>
                     <div class="service-content">
                         <h3>Péče o ovocné stromy</h3>
                         <p>Kompletní servis pro váš sad či zahradu: odborná výsadba, správné zakládání koruny, výchovné řezy mladých stromů a udržovací zdravotní řezy pro bohatou úrodu.</p>
@@ -510,10 +623,12 @@
                 </div>
 
                 <div class="service-card">
-                    <div class="service-img" style="background: url('https://images.unsplash.com/photo-1511216113906-8f57bb83e776?auto=format&fit=crop&w=400&q=80') no-repeat center center/cover;"></div>
+                    <div style="overflow: hidden;">
+                        <div class="service-img" style="background: url('invert_2.png') no-repeat center 50%/cover;"></div>
+                    </div>
                     <div class="service-content">
                         <h3>Inventarizace dřevin</h3>
-                        <p>Odborné a komplexní zmapování všech stromů a keřů v daném území. Slouží například jako podklad pro úřady ochrany přírody k vydání povolení o kácení.</p>
+                        <p>Odborné a komplexní zmapování všech stromů a keřů v daném území. Slouží například jako podklad pro úřady ochrany přírody k vydání povolení ke kácení.</p>
                     </div>
                 </div>
 
@@ -521,27 +636,40 @@
         </div>
     </section>
 
-    <section id="ohlasy" class="ohlasy-section">
-        <a href="#" class="arrow" style="left: 20px;">‹</a>
-        <a href="#" class="arrow" style="right: 20px;">›</a>
-        
-        <div class="container">
-            <h2>Ohlasy</h2>
-            <div class="ohlasy-container">
-                <div class="ohlasy-img"></div>
-                <div class="ohlasy-text">
-                    <p class="client-type">Zahrádkářka</p>
-                    <h3>Jana Konečná</h3>
-                    <span class="green-underline"></span>
-                    <p>Objednali jsme arboristický řez ovocných stromů. Stromy are krásně prosvětlené a je vidět odborný přístup. Určitě se ozveme i příště.</p>
-                    <div class="rating">★★★★★</div>
+    <!-- 5. GALERIE (PŘED A PO S POSUVNÍKEM - ZMENŠENÉ A CELÉ BEZ OŘEZU) -->
+    <section id="galerie" class="gallery-section">
+        <div class="container animate-on-scroll">
+            <h2>Ukázka práce</h2>
+            <span class="green-underline"></span>
+            <p class="gallery-subtitle">Posuňte jezdec uprostřed a podívejte se na rozdíl před a po zásahu.</p>
+
+            <!-- Box je zmenšen na šířku 650px a výšku 450px pro kompaktnější zobrazení celých fotek -->
+            <div class="before-after-box" id="comparison-box" style="position: relative; max-width: 650px; height: 450px; margin: 0 auto; overflow: hidden; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.12); user-select: none; background-color: #1a1a1a;">
+                
+                <!-- Obrázek PO zásahu (contain zobrazí celou fotku bez ořezu) -->
+                <img src="po.jpg" alt="Strom po ořezu" id="img-after" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; display: block;">
+                <span class="badge-label badge-after">Po řezu</span>
+
+                <!-- Obrázek PŘED zásahem -->
+                <div class="img-before-wrapper" id="before-wrapper" style="position: absolute; top: 0; left: 0; width: 50%; height: 100%; overflow: hidden; z-index: 2;">
+                    <img src="pred.jpg" alt="Strom před ořezem" id="img-before" style="position: absolute; top: 0; left: 0; height: 100%; object-fit: contain; display: block; max-width: none;">
+                    <span class="badge-label badge-before">Před řezem</span>
                 </div>
+
+                <!-- Dělící linka s ikonou -->
+                <div class="slider-divider" id="divider">
+                    <div class="slider-button">↔</div>
+                </div>
+
+                <!-- Posuvník -->
+                <input type="range" min="0" max="100" value="50" class="before-after-slider" id="slider" oninput="moveSlider(this.value)">
             </div>
         </div>
     </section>
 
+    <!-- 6. KONTAKT -->
     <section id="kontakt" class="contact-section">
-        <div class="container">
+        <div class="container animate-on-scroll">
             <h2>Kontakt</h2>
             <div class="contact-container">
                 <div class="contact-info">
@@ -572,25 +700,45 @@
         </div>
     </section>
 
-    <section class="map-section" style="width: 100%; height: 450px; line-height: 0; margin: 0; padding: 0;">
-        <iframe style="border:none" 
+    <!-- 7. MAPA -->
+    <section class="map-section">
+        <iframe style="border:none; width: 100%; height: 100%;" 
         src="https://mapy.com/s/bacanemavu" 
-        width="1250" 
-        height="333" 
         frameborder="0"></iframe>
     </section>
 
+    <!-- 8. PATIČKA -->
     <footer>
         <span class="footer-logo">Péče o stromy Jozek</span>
         <div class="footer-nav">
-            <a href="#domov">Domov</a>
-            <a href="#o-mne">O nás</a>
+            <a href="#domov">Úvod</a>
+            <a href="#o-mne">O mně</a>
             <a href="#sluzby">Služby</a>
-            <a href="#ohlasy">Ohlasy</a>
+            <a href="#galerie">Galerie</a>
             <a href="#kontakt">Kontakt</a>
         </div>
         <p>&copy; 2026 Dominik Jozek. Všechna práva vyhrazena.</p>
-        </footer>
+    </footer>
+
+    <!-- SKRIPT PRO OVLÁDÁNÍ POSUVNÍKU PŘED A PO -->
+    <script>
+        function moveSlider(val) {
+            document.getElementById('before-wrapper').style.width = val + '%';
+            document.getElementById('divider').style.left = val + '%';
+        }
+
+        // Zajištění stejné šířky obrázku na mobilních zařízeních
+        function syncImageWidth() {
+            const box = document.getElementById('comparison-box');
+            const beforeImg = document.getElementById('img-before');
+            if (box && beforeImg) {
+                beforeImg.style.width = box.offsetWidth + 'px';
+            }
+        }
+
+        window.addEventListener('resize', syncImageWidth);
+        window.addEventListener('DOMContentLoaded', syncImageWidth);
+    </script>
 
 </body>
 </html>
